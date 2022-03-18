@@ -1,4 +1,5 @@
-(ns k-kom.chapter-1)
+(ns k-kom.chapter-1
+  (:require [clojure.pprint :as pprint]))
 
 (defn v-length [v]
   (Math/sqrt (reduce #(+ %1 (Math/pow %2 2)) 0 v)))
@@ -11,21 +12,18 @@
       "could not calculate dot product from vectors with different counts."))))
 
 (defn cosine-similarity
-  [query doc]
-  (/ (dot-product query doc)
-     (* (v-length query) (v-length doc))))
+  [doc query]
+  (/ (dot-product doc query)
+     (* (v-length doc) (v-length query))))
 
 ;; EXERCISE 1:
 ;; Calculate cosine similarity between each pair of vectors: A=[4,3], B=[5,5] and C=[1,10]. Which ones are closest (most similar) to each other?
 
-(comment
-  (let [a [4 3] b [5 5] c [1 10]]
-    [[a b] (cosine-similarity a b)
-     [a c] (cosine-similarity a c)
-     [b c] (cosine-similarity b c)])
-  #_[[[4 3] [5 5]]
-     0.9899494936611665
-     [[4 3] [1 10]]
-     0.6766252893427926
-     [[5 5] [1 10]]
-     0.773957299203321])
+(let [a [4 3] b [5 5] c [1 10]]
+  [[a b] (cosine-similarity a b)
+   [a c] (cosine-similarity a c)
+   [b c] (cosine-similarity b c)])
+
+;; "What temperature does water boil at?"
+;; content words: #{"temperature" "water" "boil"}
+;; function words: #{"what" "do" "at"}
