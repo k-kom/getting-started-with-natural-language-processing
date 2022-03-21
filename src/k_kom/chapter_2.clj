@@ -1,6 +1,7 @@
 (ns kkom.chapter-2
   (:require [clojure.string :as string])
-  (:import java.util.StringTokenizer))
+  (:import java.io.FileInputStream
+           [opennlp.tools.tokenize TokenizerModel TokenizerME]))
 
 ;; steps
 ;; - define classes
@@ -54,3 +55,13 @@
 ;; 3.
 
 ;; accuracy and distribution matter (baseline)
+
+;; tokenize by OpenNLP:
+;;   - https://opennlp.apache.org/docs/1.9.4/manual/opennlp.html#tools.tokenizer
+;;   - https://opennlp.apache.org/docs/1.9.4/apidocs/opennlp-tools/index.html
+(defn tokenize
+  [^String text]
+  (with-open [model-in (FileInputStream. "./en-token.bin")]
+    (let [model (TokenizerModel. model-in)
+          tokenizer (TokenizerME. model)]
+      (.tokenize tokenizer (.toLowerCase text)))))
