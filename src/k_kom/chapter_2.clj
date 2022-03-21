@@ -65,3 +65,9 @@
     (let [model (TokenizerModel. model-in)
           tokenizer (TokenizerME. model)]
       (.tokenize tokenizer (.toLowerCase text)))))
+
+;; Exercise 6
+;; P(prescription | spam) = (/ 2 5)
+;; P(meeting | ham) = (/ 5 10)
+;; P(stock | spam) = (/ 1 5)
+;; P(stock | ham) = (/ 3 10)
