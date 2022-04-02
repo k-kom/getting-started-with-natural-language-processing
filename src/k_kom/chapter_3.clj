@@ -1,3 +1,4 @@
+^{:nextjournal.clerk/visibility #{:hide-ns :hide}}
 (ns k-kom.chapter-3)
 
 ;; ## Information retrieval
